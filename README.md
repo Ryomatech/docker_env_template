@@ -138,3 +138,7 @@ apptainer exec --nv ml-env.sif python train.py
 
 - 複数の機械学習リポジトリで同じ環境を共有できます。
 - Dockerfile・requirements.txt を共通で保守することで再現性と管理効率が向上します。
+
+## 🖊️追記
+
+- pytorchのイメージを使うとlinux/amd64にしか対応しておらず、AppleシリコンのMacの場合低速になるためPythonイメージにしました。

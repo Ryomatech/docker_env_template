@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:latest
+FROM python:3.11.4
 
 RUN apt update && apt install -y zsh
 
