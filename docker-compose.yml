@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  ml:
+    build:
+      context: ../docker_env
+      dockerfile: Dockerfile
+    container_name: ml-env
+    volumes:
+      - .:/workspace    
+    working_dir: /workspace/
+    tty: true
+    stdin_open: true
+    command: zsh
