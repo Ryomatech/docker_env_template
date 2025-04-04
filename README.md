@@ -22,7 +22,34 @@ projects/
 
 ---
 
-## 💣 使用方法（プロジェクトから）
+## 🚀 共通環境の起動（Docker Compose）
+
+### 1. 共通環境をビルド & 起動
+
+```bash
+cd docker-env
+
+docker compose up --build
+```
+
+### 2. 起動した環境に入る（別ターミナルで）
+
+```bash
+docker compose exec ml zsh
+```
+
+> ※ `zsh` を使用するには Dockerfile 内でインストールしておく必要があります。
+
+### 3. 実験や実行スクリプトを手動で呼び出す
+
+```bash
+cd /workspace
+python train.py
+```
+
+---
+
+## 💣 プロジェクトからの利用方法（run を使った一時実行）
 
 プロジェクト側の `docker-compose.yml` に以下を記述し、共通環境を参照します：
 
@@ -43,8 +70,6 @@ services:
     command: zsh
 ```
 
-> ※ `command: zsh` を使用する場合、`Dockerfile` で `zsh` をインストールしておいてください。
-
 ---
 
 ## 💻 通常のPCでの実行方法（Docker環境）
@@ -55,19 +80,19 @@ services:
 # プロジェクトディレクトリ内で実行
 cd my-ml-project
 
-docker-compose -f docker-compose.yml run --rm ml python train.py
+docker compose -f docker-compose.yml run --rm -w /workspace ml python train.py
 ```
 
 ### 対話的にシェルに入りたい場合
 
 ```bash
-docker-compose -f docker-compose.yml run --rm ml
+docker compose -f docker-compose.yml run --rm -w /workspace ml zsh
 ```
 
 > ※ GPU環境で実行する場合は `--gpus all` を `run` の後ろに追加してください：
-> 
+>
 > ```bash
-> docker compose -f docker-compose.yml run --rm --gpus all ml python train.py
+> docker compose -f docker-compose.yml run --rm --gpus all -w /workspace ml python train.py
 > ```
 
 ---
