@@ -57,7 +57,7 @@ python train.py
 services:
   ml:
     build:
-      context: ../docker-env
+      context: ../docker_env
       dockerfile: Dockerfile
     container_name: ml-env
     volumes:
@@ -65,6 +65,7 @@ services:
     working_dir: /workspace/
     tty: true
     stdin_open: true
+    image: ml-env
     command: zsh
 ```
 
