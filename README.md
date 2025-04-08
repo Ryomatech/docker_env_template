@@ -150,3 +150,4 @@ apptainer exec --nv ml-env.sif python train.py
 ## 🖊️追記
 
 - pytorchのイメージを使うとlinux/amd64にしか対応しておらず、AppleシリコンのMacの場合低速になるためPythonイメージにしました。
+- TSUBAMEなどのスパコンlinux環境で使うことを前提とするとamd64に対応しているイメージをベースにしないとです。
