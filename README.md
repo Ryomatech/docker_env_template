@@ -129,6 +129,27 @@ apptainer build ml-env.sif docker-daemon://ml-env:latest
 # apptainer build ml-env.sif docker://pytorch/pytorch:latest
 ```
 
+.sifがある時のSingularity.defを使ったbuild(追加でinstallする必要がある時とか)
+```bash
+apptainer build ml-env.sif Singularity.def
+```
+```bash
+#Singularity.def
+Bootstrap: docker
+From: user_name/ml-env:latest
+
+%post
+    apt-get update
+    apt-get install -y \
+        libglib2.0-0 \
+        libx11-6 \
+        libxext6 \
+        libsm6 \
+        libxrender1 \
+        libgl1-mesa-glx \
+        libglib2.0-dev
+```
+
 ### 実行例:
 
 ```bash
